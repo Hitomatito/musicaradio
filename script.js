@@ -1,7 +1,7 @@
 import gsap from "https://cdn.skypack.dev/gsap@3.11.0";
 
 const BUTTON = document.querySelector('button');
-const AUDIO = new Audio('./METAMORPHOSIS - INTERWORLD.mp3');
+const AUDIO = new Audio('./San%20Lucas.mp3');
 
 AUDIO.crossOrigin = 'anonymous';
 

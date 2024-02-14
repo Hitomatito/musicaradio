@@ -1,11 +1,7 @@
 import gsap from "https://cdn.skypack.dev/gsap@3.11.0";
 
 const BUTTON = document.querySelector('button');
-<<<<<<< HEAD
 const AUDIO = new Audio('./San%20Lucas.mp3');
-=======
-const AUDIO = new Audio('./Me%20va%20a%20costar.mp3');
->>>>>>> 7ce34e68291d3cf4af6a87638ecbc08852d60c44
 
 AUDIO.crossOrigin = 'anonymous';
 

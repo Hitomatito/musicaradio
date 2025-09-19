@@ -2,6 +2,7 @@ import gsap from "https://cdn.skypack.dev/gsap@3.11.0";
 
 const BUTTON = document.querySelector('button');
 const AUDIO = new Audio('./San%20Lucas.mp3');
+const VIDEO = document.getElementById('video-bg'); // Nueva referencia al video
 
 AUDIO.crossOrigin = 'anonymous';
 
@@ -9,7 +10,7 @@ const CONFIG = {
   FADE: 2,
   BARS: 16,
   DURATION: 0.6,
-  ANGLE: -22,
+  ANGLE: 0, // Cambiado de -22 a 0 para que la radio se vea recta
   MULTI: 2.6,
   FFT: 32 };
 
@@ -89,7 +90,12 @@ BUTTON.addEventListener('click', () => {
       AUDIO.currentTime = 0;
       AUDIO.volume = 0;
       AUDIO.play();
+      VIDEO.play(); // Reproducir el video al mismo tiempo que el audio
       COG_PLAY.play();
+      // Nueva animación: hacer la radio semi-transparente
+      gsap.to('.scene-wrapper', { opacity: 0.2, duration: 1, ease: 'power2.out' });
+      // Nueva animación: mover la radio al pie de la pantalla
+      gsap.to('.scene-wrapper', { y: '30vh', duration: 1, ease: 'power2.out' });
     } }).
 
   set('.btn-jump', {
@@ -239,11 +245,18 @@ const RESET = () => {
   gsap.delayedCall(CONFIG.FADE * 0.5, () => {
     gsap.ticker.remove(VIZ);
     COG_PLAY.pause();
+    AUDIO.pause(); // Ya está aquí
+    VIDEO.pause(); // Pausar el video al finalizar
     gsap.
     timeline({
       onComplete: () => {
         BUTTON.disabled = false;
       } }).
+
+    // Nueva animación: restaurar opacidad completa
+    gsap.to('.scene-wrapper', { opacity: 1, duration: 0.5, ease: 'power2.out' }).
+    // Nueva animación: restaurar posición centrada
+    gsap.to('.scene-wrapper', { y: 0, duration: 0.5, ease: 'power2.out' }).
 
     set(
     '.btn-shadow',

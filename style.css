@@ -31,7 +31,7 @@
 }
 
 .scene-wrapper {
-  transform: translate3d(0, 0, 100vmin);
+  transform: translate3d(0, 0, 10vmin); /* Reducido de 60vmin a 40vmin para achicar más */
 }
 
 body {
@@ -40,9 +40,11 @@ body {
 	background-position: center; /* Centrar la imagen */
 	background-repeat: no-repeat; /* No repetir la imagen */
 	display: grid;
-	place-items: center;
+	place-items: center; /* Cambiado de 'end center' a 'center' para centrar */
 	min-height: 100vh;
 	font-family:  'Google Sans', sans-serif, system-ui;
+	/* justify-content: end; */ /* Quitado para centrar */
+	padding: 2rem; /* Añadido padding para espacio discreto */
 }
 #video-bg {
 	position: fixed;
@@ -51,6 +53,7 @@ body {
 	min-width: 100%;
 	min-height: 100%;
 	z-index: -1; /* Asegura que el video esté detrás de otros elementos */
+	object-fit: cover; /* Cubre toda la pantalla sin distorsión */
   }
   
 span {
@@ -470,4 +473,16 @@ span {
   transform: translate3d(0, 0, calc(var(--depth, 20) * -0.5px)) rotateY(180deg);
   top: 0;
   left: 0;
+}
+
+/* Media query para móvil (pantallas verticales) */
+@media (max-width: 767px) {
+	.scene-wrapper {
+		transform: translate3d(0, 0, 30vmin); /* Reducido de 40vmin a 30vmin en móvil */
+	}
+	body {
+		place-items: center; /* Mantener centrado en móvil */
+		justify-content: center; /* Añadido para centrar horizontalmente */
+		padding: 1rem;
+	}
 }
